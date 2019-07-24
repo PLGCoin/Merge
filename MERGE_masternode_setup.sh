@@ -70,14 +70,10 @@ $MERGE_CLI stop
 rm $MERGED
 rm $MERGE_CLI
 rm $MERGE_TX
-# Retrieve the latest wallet release
-LATEST_RELEASE_URL=https://gitlab.projectmerge.org/ProjectMerge/merge/-/releases
-FILE_ENDIND=x86_64-linux-gnu.tar.gz
-release_file_url=$(curl -s $LATEST_RELEASE_URL | grep "browser_download_url.*$FILE_ENDIND" | cut -d : -f 2,3 | tr -d \")
-release_file_name=$(basename $release_file_url)
-wget $release_file_url
-tar -xf $release_file_name
-rm $release_file_name
+# Retrieve the 1.0.3 wallet release
+wget https://gitlab.projectmerge.org/ProjectMerge/merge/uploads/ef8c019f081cf4c982fb0dc43f4176e1/merge-1.0.3-x86_64-linux-gnu.tar.gz
+tar -xf merge-1.0.3-x86_64-linux-gnu.tar.gz
+rm merge-1.0.3-x86_64-linux-gnu.tar.gz
 
 MERGE_CLI=`find . -name "$MERGE_CLI_CMD" | tail -1`
 MERGE_TX=`find . -name "$MERGE_TX_CMD" | tail -1`
